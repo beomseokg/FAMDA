@@ -1,0 +1,19 @@
+# data, weights, outputs
+data/
+pretrained/
+work_dirs/
+configs/generated/
+jobs/
+*.pth
+*.pt
+*.pkl
+segment_anything/ckp/
+
+# python / os
+__pycache__/
+*.py[cod]
+*.egg-info/
+.DS_Store
+.ipynb_checkpoints/
+nohup.out
+*.log
