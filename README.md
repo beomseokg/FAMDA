@@ -59,8 +59,9 @@ pip install mmcv-full==1.3.7
 > **mmcv-full 1.3.7 is built from source.** OpenMMLab provides no prebuilt 1.3.7 wheel for
 > PyTorch 1.9 + CUDA 11.1, so `pip` compiles the CUDA ops. This needs the CUDA 11.1 toolkit
 > (`nvcc`) and a compatible gcc on your `PATH`, and takes about 10–30 minutes.
-> If `nvcc --version` does not report 11.1, install it first, e.g.
-> `conda install -c nvidia cuda-toolkit=11.1`, or set `CUDA_HOME` to an existing CUDA 11.1 install.
+> If `nvcc --version` does not report 11.1, install the
+> [CUDA 11.1 toolkit](https://developer.nvidia.com/cuda-11.1.0-download-archive) first, or point
+> `CUDA_HOME` to an existing CUDA 11.1 install.
 
 ### Pretrained weights
 
