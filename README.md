@@ -1,9 +1,9 @@
 <h1 align="center">FAMDA</h1>
-<h3 align="center">Foundation-Model-Assisted Domain Adaptation for Efficient Multi-Task Perception</h3>
+<h3 align="center">Fieldable Low-Light Multi-Task Perception via Foundation-Model-Assisted Domain Adaptation</h3>
 
 <p align="center">
-  <a href="#"><img alt="WACV 2027" src="https://img.shields.io/badge/WACV-2027-1f6feb"></a>
-  <a href="#"><img alt="paper" src="https://img.shields.io/badge/paper-TODO-b31b1b"></a>
+  <a href="https://arxiv.org/abs/2509.23626"><img alt="WACV 2027" src="https://img.shields.io/badge/WACV-2027-1f6feb"></a>
+  <a href="https://arxiv.org/abs/2509.23626"><img alt="arXiv" src="https://img.shields.io/badge/arXiv-2509.23626-b31b1b?logo=arxiv&logoColor=white"></a>
   <a href="https://github.com/beomseokg/FAMDA"><img alt="code" src="https://img.shields.io/badge/github-code-181717?logo=github&logoColor=white"></a>
   <a href="LICENSE"><img alt="License: Apache-2.0" src="https://img.shields.io/badge/license-Apache--2.0-2ea44f"></a>
 </p>
@@ -15,8 +15,8 @@
   <b>Bottom:</b> a single FAMDA MiT-B2 student (121 MB). Click for the full-resolution video.</sub>
 </p>
 
-This is the **official implementation** of *"Foundation-Model-Assisted Domain Adaptation for
-Efficient Multi-Task Perception"* (WACV 2027).
+This is the **official implementation** of *"[Fieldable Low-Light Multi-Task Perception via
+Foundation-Model-Assisted Domain Adaptation](https://arxiv.org/abs/2509.23626)"* (WACV 2027).
 
 Foundation models such as SAM and Depth Anything generalize remarkably well across domains,
 but they are slow, large, and each only solves one task. FAMDA is a self-training framework for
@@ -177,9 +177,9 @@ Apache License 2.0. Some included components carry their own licenses; see
 ## Citation
 
 ```bibtex
-@inproceedings{famda2027,
-  title     = {Foundation-Model-Assisted Domain Adaptation for Efficient Multi-Task Perception},
-  author    = {TODO},
+@inproceedings{kang2027famda,
+  title     = {Fieldable Low-Light Multi-Task Perception via Foundation-Model-Assisted Domain Adaptation},
+  author    = {Kang, Beomseok and Mithun, Niluthpol Chowdhury and Sizintsev, Mikhail and Chiu, Han-Pang and Samarasekera, Supun},
   booktitle = {Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)},
   year      = {2027}
 }
