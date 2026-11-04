@@ -29,24 +29,38 @@ The code builds on [DAFormer](https://github.com/lhoyer/DAFormer) (MMSegmentatio
 covers the standard synthetic-to-real multi-task UDA benchmarks,
 **SYNTHIA → Cityscapes** and **Virtual KITTI 2 → Cityscapes**.
 
+> **Note on the low-light dataset.** The field-collected low-light dataset used in the paper
+> (and shown in the video above) cannot be released due to SRI International policy.
+
 ---
 
 ## Install
 
 Python 3.8 and a CUDA GPU are required. MiT-B5 training peaks at roughly 36–40 GB of GPU memory,
 so a 40 GB+ card (A100 / A6000) is recommended. The pinned PyTorch build (1.9.1 + CUDA 11.1)
-supports GPUs up to `sm_86`.
+runs on GPUs up to compute capability 8.6 (A100, A6000, RTX 30xx); newer GPUs such as H100 or
+RTX 40xx are not supported by this build.
 
 ```bash
 git clone https://github.com/beomseokg/FAMDA.git
 cd FAMDA
 conda create -n famda python=3.8 -y && conda activate famda
 
-pip install -r requirements.txt -f https://download.pytorch.org/whl/torch_stable.html
+# 1. PyTorch (install first, otherwise timm / kornia pull in a newer torch)
 pip install torch==1.9.1+cu111 torchvision==0.10.1+cu111 -f https://download.pytorch.org/whl/torch_stable.html
+
+# 2. everything else
+pip install -r requirements.txt
+
+# 3. mmcv-full (compiled from source, see the note below)
 pip install mmcv-full==1.3.7
-pip install timm==1.0.15 pycocotools==2.0.7
 ```
+
+> **mmcv-full 1.3.7 is built from source.** OpenMMLab provides no prebuilt 1.3.7 wheel for
+> PyTorch 1.9 + CUDA 11.1, so `pip` compiles the CUDA ops. This needs the CUDA 11.1 toolkit
+> (`nvcc`) and a compatible gcc on your `PATH`, and takes about 10–30 minutes.
+> If `nvcc --version` does not report 11.1, install it first, e.g.
+> `conda install -c nvidia cuda-toolkit=11.1`, or set `CUDA_HOME` to an existing CUDA 11.1 install.
 
 ### Pretrained weights
 
