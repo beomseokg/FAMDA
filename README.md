@@ -7,12 +7,12 @@
   <a href="LICENSE"><img alt="License: Apache-2.0" src="https://img.shields.io/badge/license-Apache--2.0-2ea44f"></a>
 </p>
 
-<p align="center">
-  <a href="assets/lowlight_demo.mp4"><img src="assets/lowlight_demo.gif" alt="FAMDA low-light demo" width="100%"></a>
-  <br>
-  <sub>Low-light field data. <b>Top:</b> two separate foundation models (Semantic Segment Anything + Depth Anything, 4.63 GB).
-  <b>Bottom:</b> a single FAMDA MiT-B2 student (121 MB). Click for the full-resolution video.</sub>
-</p>
+
+
+https://github.com/user-attachments/assets/412d2d2f-b24f-46a6-a26b-fe507938380c
+
+<p align="center"><sub>Low-light field data. <b>Top:</b> two separate foundation models (Semantic Segment Anything + Depth Anything, 4.63 GB). <b>Bottom:</b> a single FAMDA MiT-B2 student (121 MB).</sub></p>
+
 
 This is the **official implementation** of *"[Fieldable Low-Light Multi-Task Perception via
 Foundation-Model-Assisted Domain Adaptation](https://arxiv.org/abs/2509.23626)"* (WACV 2027).
