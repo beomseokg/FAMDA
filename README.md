@@ -2,7 +2,6 @@
 <h3 align="center">Fieldable Low-Light Multi-Task Perception via Foundation-Model-Assisted Domain Adaptation</h3>
 
 <p align="center">
-  <a href="https://arxiv.org/abs/2509.23626"><img alt="WACV 2027" src="https://img.shields.io/badge/WACV-2027-1f6feb"></a>
   <a href="https://arxiv.org/abs/2509.23626"><img alt="arXiv" src="https://img.shields.io/badge/arXiv-2509.23626-b31b1b?logo=arxiv&logoColor=white"></a>
   <a href="https://github.com/beomseokg/FAMDA"><img alt="code" src="https://img.shields.io/badge/github-code-181717?logo=github&logoColor=white"></a>
   <a href="LICENSE"><img alt="License: Apache-2.0" src="https://img.shields.io/badge/license-Apache--2.0-2ea44f"></a>
