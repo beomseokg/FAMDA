@@ -135,7 +135,7 @@ Every run trains for 40k iterations on one GPU. Logs and checkpoints go to
 To evaluate a trained checkpoint:
 
 ```bash
-python tools/test.py <work_dir>/<run>.json <work_dir>/latest.pth --eval mIoU
+python -m tools.test <work_dir>/<run>.json <work_dir>/iter_40000.pth --eval mIoU
 ```
 
 ---
@@ -146,10 +146,10 @@ We release the **MiT-B2** student, the variant recommended in the paper for depl
 (it is also the model shown in the video above). Each zip contains the student weights (`.pth`,
 segmentation + depth heads, 121 MB) and the config used for training (`.json`).
 
-| model | benchmark | mIoU | RMSE (m) | download |
-| --- | --- | :---: | :---: | --- |
-| FAMDA MiT-B2 | VK2 → CS | 65.05 | 6.34 | [famda_vk2cs_mitb2.zip](https://drive.google.com/file/d/1_SVwyKzx057BPRt4vjg8aLUySz9CqRiE/view?usp=sharing) |
-| FAMDA MiT-B2 | SYN → CS | 58.03 | 6.41 | [famda_syn2cs_mitb2.zip](https://drive.google.com/file/d/1wGk1CRa5AkuugivEiOlvOTAjE9NFdRzT/view?usp=sharing) |
+| model | benchmark | mIoU | RMSE (m) | paper | download |
+| --- | --- | :---: | :---: | --- | --- |
+| FAMDA MiT-B2 | VK2 → CS | 65.05 | 6.34 | Table 5(a), FAMDA column | [famda_vk2cs_mitb2.zip](https://drive.google.com/file/d/1_SVwyKzx057BPRt4vjg8aLUySz9CqRiE/view?usp=sharing) |
+| FAMDA MiT-B2 | SYN → CS | 58.03 | 6.41 | Supplementary Table S9, w/ SAM | [famda_syn2cs_mitb2.zip](https://drive.google.com/file/d/1wGk1CRa5AkuugivEiOlvOTAjE9NFdRzT/view?usp=sharing) |
 
 ```bash
 mkdir -p checkpoints
@@ -158,13 +158,21 @@ gdown "https://drive.google.com/uc?id=1wGk1CRa5AkuugivEiOlvOTAjE9NFdRzT" -O chec
 unzip checkpoints/famda_vk2cs_mitb2.zip  -d checkpoints/
 unzip checkpoints/famda_syn2cs_mitb2.zip -d checkpoints/
 
-# evaluate (VK2 -> CS)
-python tools/test.py checkpoints/famda_vk2cs_mitb2/famda_vk2cs_mitb2.json \
-    checkpoints/famda_vk2cs_mitb2/famda_vk2cs_mitb2.pth --eval mIoU
+# evaluate on the Cityscapes val set (run from the repository root)
+python -m tools.test checkpoints/famda_vk2cs_mitb2.json  checkpoints/famda_vk2cs_mitb2.pth  --eval mIoU
+python -m tools.test checkpoints/famda_syn2cs_mitb2.json checkpoints/famda_syn2cs_mitb2.pth --eval mIoU
 ```
 
-The logged mIoU is averaged over all 19 Cityscapes classes; multiply by 19/8 (VK2→CS) or 19/16
-(SYN→CS) to get the numbers in the table (see [Metrics](#reproducing-the-paper)).
+The script first prints a running depth RMSE (`avg_rmse`) for every validation image and then the
+segmentation results. Compare the final values with the paper:
+
+| | logged mIoU (19 classes) | → reported mIoU | logged `avg_rmse` | paper |
+| --- | :---: | :---: | :---: | --- |
+| VK2 → CS | 27.39 | × 19/8 = **65.05** | **6.34** | Table 5(a): 65.05 / 6.34 |
+| SYN → CS | 48.87 | × 19/16 = **58.03** | **6.41** | Table S9: 58.03 / 6.41 |
+
+The logged mIoU averages over all 19 Cityscapes classes, including classes that do not exist in the
+source dataset (their IoU is 0), so it is rescaled to the 8 (VK2→CS) or 16 (SYN→CS) shared classes.
 
 ---
 

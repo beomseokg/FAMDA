@@ -245,7 +245,8 @@ def save_normal_map(pred_norm_est, save_path="normal_map.png"):
 
 def main():
     args = parse_args()
-    args.eval_options['imgfile_prefix'] += '_dam'
+    if args.eval_options is not None and 'imgfile_prefix' in args.eval_options:
+        args.eval_options['imgfile_prefix'] += '_dam'
 
     assert args.out or args.eval or args.format_only or args.show \
         or args.show_dir, \
@@ -361,7 +362,7 @@ def main():
     avg_merr = 0    
     img_count = 0
 
-    norm_path = args.checkpoint.replace("iter_40000.pth", "normal_estimation/")
+    norm_path = os.path.join(os.path.dirname(args.checkpoint), "normal_estimation/")
     file_path = norm_path + "eval_score.txt"
     os.makedirs(norm_path, exist_ok=True)
 
