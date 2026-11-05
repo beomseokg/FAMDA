@@ -92,12 +92,23 @@ data/
 | dataset | download | extract to |
 | --- | --- | --- |
 | **Cityscapes** | `leftImg8bit_trainvaltest.zip`, `gtFine_trainvaltest.zip`, `disparity_trainvaltest.zip`, `camera_trainvaltest.zip` from [cityscapes-dataset.com](https://www.cityscapes-dataset.com/) | `data/cityscapes/` |
-| **SAM masks** | `sam_mask_small.zip` — **TODO: link** | `data/cityscapes/` |
+| **SAM masks** | `sam_mask_small.zip` (~300 MB) from [Google Drive](https://drive.google.com/file/d/1G6c1YGQcuByZqTdS8uZ-hvQ7UKdhnAU6/view?usp=sharing) | `data/cityscapes/` |
 | **SYNTHIA** | `SYNTHIA-RAND-CITYSCAPES` from [synthia-dataset.net](http://synthia-dataset.net/downloads/) | `data/synthia/` |
 | **Virtual KITTI 2** | `vkitti_2.0.3_rgb.tar`, `vkitti_2.0.3_depth.tar`, `vkitti_2.0.3_classSegmentation.tar` from [NAVER LABS Europe](https://europe.naverlabs.com/proxy-virtual-worlds-vkitti-2/) | `data/vkitti2/` |
 
-SAM is **not** run during training: FAMDA reads the pre-computed masks in
-`data/cityscapes/sam_mask_small/**/*.pkl`, which keeps training cost close to plain DAFormer.
+SAM is **not** run during training: FAMDA reads the pre-computed SAM masks for the Cityscapes
+training images (`data/cityscapes/sam_mask_small/**/*.pkl`, resized to 1024 × 512), which keeps
+training cost close to plain DAFormer. Both benchmarks use Cityscapes as the target, so the same
+masks are used for SYN→CS and VK2→CS. To download them from the command line:
+
+```bash
+gdown "https://drive.google.com/uc?id=1G6c1YGQcuByZqTdS8uZ-hvQ7UKdhnAU6" -O data/cityscapes/sam_mask_small.zip
+unzip data/cityscapes/sam_mask_small.zip -d data/cityscapes/
+```
+
+> **Disk space.** The zip is ~300 MB, but it extracts to **~218 GB** (2,975 mask files, one per
+> Cityscapes training image). Make sure the disk holding `data/` has enough free space before
+> unzipping.
 
 Then convert the labels and compute the rare-class-sampling statistics:
 
