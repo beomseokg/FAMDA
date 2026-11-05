@@ -2,6 +2,7 @@
 data/
 pretrained/
 work_dirs/
+checkpoints/
 configs/generated/
 jobs/
 *.pth

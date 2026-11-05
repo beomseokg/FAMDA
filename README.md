@@ -4,6 +4,7 @@
 <p align="center">
   <a href="https://arxiv.org/abs/2509.23626"><img alt="arXiv" src="https://img.shields.io/badge/arXiv-2509.23626-b31b1b?logo=arxiv&logoColor=white"></a>
   <a href="https://github.com/beomseokg/FAMDA"><img alt="code" src="https://img.shields.io/badge/github-code-181717?logo=github&logoColor=white"></a>
+  <a href="#checkpoints"><img alt="checkpoint" src="https://img.shields.io/badge/checkpoint-Google%20Drive-4285F4?logo=googledrive&logoColor=white"></a>
   <a href="LICENSE"><img alt="License: Apache-2.0" src="https://img.shields.io/badge/license-Apache--2.0-2ea44f"></a>
 </p>
 
@@ -136,6 +137,34 @@ To evaluate a trained checkpoint:
 ```bash
 python tools/test.py <work_dir>/<run>.json <work_dir>/latest.pth --eval mIoU
 ```
+
+---
+
+## Checkpoints
+
+We release the **MiT-B2** student, the variant recommended in the paper for deployment
+(it is also the model shown in the video above). Each zip contains the student weights (`.pth`,
+segmentation + depth heads, 121 MB) and the config used for training (`.json`).
+
+| model | benchmark | mIoU | RMSE (m) | download |
+| --- | --- | :---: | :---: | --- |
+| FAMDA MiT-B2 | VK2 → CS | 65.05 | 6.34 | [famda_vk2cs_mitb2.zip](https://drive.google.com/file/d/1_SVwyKzx057BPRt4vjg8aLUySz9CqRiE/view?usp=sharing) |
+| FAMDA MiT-B2 | SYN → CS | 58.03 | 6.41 | [famda_syn2cs_mitb2.zip](https://drive.google.com/file/d/1wGk1CRa5AkuugivEiOlvOTAjE9NFdRzT/view?usp=sharing) |
+
+```bash
+mkdir -p checkpoints
+gdown "https://drive.google.com/uc?id=1_SVwyKzx057BPRt4vjg8aLUySz9CqRiE" -O checkpoints/famda_vk2cs_mitb2.zip
+gdown "https://drive.google.com/uc?id=1wGk1CRa5AkuugivEiOlvOTAjE9NFdRzT" -O checkpoints/famda_syn2cs_mitb2.zip
+unzip checkpoints/famda_vk2cs_mitb2.zip  -d checkpoints/
+unzip checkpoints/famda_syn2cs_mitb2.zip -d checkpoints/
+
+# evaluate (VK2 -> CS)
+python tools/test.py checkpoints/famda_vk2cs_mitb2/famda_vk2cs_mitb2.json \
+    checkpoints/famda_vk2cs_mitb2/famda_vk2cs_mitb2.pth --eval mIoU
+```
+
+The logged mIoU is averaged over all 19 Cityscapes classes; multiply by 19/8 (VK2→CS) or 19/16
+(SYN→CS) to get the numbers in the table (see [Metrics](#reproducing-the-paper)).
 
 ---
 
