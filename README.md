@@ -194,11 +194,11 @@ Apache License 2.0. Some included components carry their own licenses; see
 ## Citation
 
 ```bibtex
-@inproceedings{kang2027famda,
-  title     = {Fieldable Low-Light Multi-Task Perception via Foundation-Model-Assisted Domain Adaptation},
-  author    = {Kang, Beomseok and Mithun, Niluthpol Chowdhury and Sizintsev, Mikhail and Chiu, Han-Pang and Samarasekera, Supun},
-  booktitle = {Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)},
-  year      = {2027}
+@article{kang2025famda,
+  title   = {Fieldable Low-Light Multi-Task Perception via Foundation-Model-Assisted Domain Adaptation},
+  author  = {Kang, Beomseok and Mithun, Niluthpol Chowdhury and Sizintsev, Mikhail and Chiu, Han-Pang and Samarasekera, Supun},
+  journal = {arXiv preprint arXiv:2509.23626},
+  year    = {2025}
 }
 ```
 
