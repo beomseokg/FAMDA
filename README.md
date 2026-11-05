@@ -37,8 +37,10 @@ covers the standard synthetic-to-real multi-task UDA benchmarks,
 
 ## Install
 
-Python 3.8 and a CUDA GPU are required. MiT-B5 training peaks at roughly 36–40 GB of GPU memory,
-so a 40 GB+ card (A100 / A6000) is recommended. The pinned PyTorch build (1.9.1 + CUDA 11.1)
+Python 3.8 and a CUDA GPU are required. Training keeps the Depth Anything ViT-L model in GPU
+memory, so it needs roughly 37–40 GB even for small students (MiT-B2 uses ~37 GB); a 40 GB+ card
+(A100 / A6000 / A40) is recommended. Evaluating a released checkpoint needs ~8 GB.
+The pinned PyTorch build (1.9.1 + CUDA 11.1)
 runs on GPUs up to compute capability 8.6 (A100, A6000, RTX 30xx); newer GPUs such as H100 or
 RTX 40xx are not supported by this build.
 
@@ -58,17 +60,18 @@ pip install mmcv-full==1.3.7
 ```
 
 > **mmcv-full 1.3.7 is built from source.** OpenMMLab provides no prebuilt 1.3.7 wheel for
-> PyTorch 1.9 + CUDA 11.1, so `pip` compiles the CUDA ops. This needs the CUDA 11.1 toolkit
-> (`nvcc`) and a compatible gcc on your `PATH`, and takes about 10–30 minutes.
-> If `nvcc --version` does not report 11.1, install the
-> [CUDA 11.1 toolkit](https://developer.nvidia.com/cuda-11.1.0-download-archive) first, or point
-> `CUDA_HOME` to an existing CUDA 11.1 install.
+> PyTorch 1.9 + CUDA 11.1, so `pip` compiles the CUDA ops. This needs a **CUDA 11.x** toolkit
+> (`nvcc`) and a compatible gcc on your `PATH`, and takes about 10–30 minutes (our environment was
+> built with CUDA 11.8). PyTorch refuses to build extensions with a different major CUDA version,
+> so a CUDA 12.x `nvcc` will not work. If `nvcc --version` does not report 11.x, install a
+> [CUDA 11 toolkit](https://developer.nvidia.com/cuda-toolkit-archive) and point `CUDA_HOME` to it.
 
 ### Pretrained weights
 
 | | where | source |
 | --- | --- | --- |
 | MiT-B0 / B1 / B2 / B5 ImageNet weights (`mit_b*.pth`) | `pretrained/` | [SegFormer](https://github.com/NVlabs/SegFormer) |
+| ResNet-101 ImageNet weights (DeepLab-V2 configs only) | downloaded automatically (`open-mmlab://resnet101_v1c`) | [MMCV](https://github.com/open-mmlab/mmcv) |
 | Depth Anything ViT-L | downloaded automatically on first run (`LiheYoung/depth_anything_vitl14`, ~1.3 GB, Hugging Face cache) | [Depth Anything](https://github.com/LiheYoung/Depth-Anything) |
 | DINOv2 hub code (used by Depth Anything) | already in `torchhub/` | [DINOv2](https://github.com/facebookresearch/dinov2) |
 
