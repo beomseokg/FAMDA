@@ -227,8 +227,6 @@ Apache License 2.0. Some included components carry their own licenses; see
 [LICENSES.md](LICENSES.md).
 
 
-<!--
-
 ---
 
 ## Citation
@@ -241,5 +239,3 @@ Apache License 2.0. Some included components carry their own licenses; see
   year    = {2025}
 }
 ```
-
--->
